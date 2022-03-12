@@ -19,9 +19,11 @@ public class InitDb {
         Task newTask = new Task();
         newTask.setState(TaskState.TODO);
         newTask.setDescription("Hello");
+        newTask.setName("this is todo");
 
         Task doneTask = new Task();
         doneTask.setDescription("Done");
+        newTask.setName("this is done");
         doneTask.setState(TaskState.DONE);
 
         return args -> {

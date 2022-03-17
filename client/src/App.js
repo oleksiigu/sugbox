@@ -55,6 +55,8 @@ class App extends React.Component {
       let state = "IN_PROGRESS";
       if(task.state === "IN_PROGRESS") {
         state = "DONE";
+      } else if (task.state == "DONE") {
+        state = "ARCHIVED";
       }
 
       axios.patch(task._links.self.href, {
@@ -62,7 +64,6 @@ class App extends React.Component {
       }, {
         headers: {
           'Content-Type': 'application/json'
-			    //'If-Match': employee.headers.Etag
         }
       }).then(response => {
         this.loadTasks();

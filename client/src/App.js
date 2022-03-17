@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Navbar } from "react-bootstrap";
 import TasksList from "./TasksList";
 import CreateDialog from "./CreateDialog";
 import StompClient from "./websocket-listener"
@@ -83,11 +83,31 @@ class App extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div>
+              <Navbar bg="dark" variant="dark">
+                <Container>
+                  <Navbar.Brand href="#home">
+                    <img
+                      alt=""
+                      src="/logo.svg"
+                      width="30"
+                      height="30"
+                      className="d-inline-block align-top"
+                    />{' '}
+                  Suggestion Box
+                  </Navbar.Brand>
+                  <Navbar.Toggle />
+                    <Navbar.Collapse className="justify-content-end">
+                      <Navbar.Text>
+                        <a href="/logout">Logout</a>
+                      </Navbar.Text>
+                  </Navbar.Collapse>
+                </Container>
+              </Navbar>
+                <div className="center">
                   <h1>Welcome to Suggestion Box!</h1>
                 </div>
-                
 
+              
                 <Container>
                   <Row>
                     <Col xs={3}>

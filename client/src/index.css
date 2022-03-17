@@ -12,6 +12,16 @@ code {
     monospace;
 }
 
+.center {
+  border: 5px solid #ffc571;
+  text-align: center;
+}
+
+.row .taskCard {
+  margin: 5%;
+  width: 95%;
+}
+
 .todo.card {
   background-color:grey;
   margin-left: auto;

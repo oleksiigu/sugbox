@@ -26,14 +26,14 @@ export default class Task extends React.Component {
         }
 
         return (
-            <Card className={this.props.task.state.toLowerCase()}>
+            <Card className="bg-dark text-white taskCard">
                 <Card.Body>
                     <Card.Title>{this.props.task.name}</Card.Title>
                     <Card.Text>
                         {this.props.task.description}
                     </Card.Text>
-                    <Button variant="info" size="sm" onClick={this.onUpdate}>{buttonText}</Button>
-                    <Button variant="danger" size="sm" onClick={this.onDelete}>Delete</Button>
+                    <Button variant="info" size="sm" onClick={this.onUpdate}>{buttonText}</Button>{' '}
+                    <Button variant="danger" size="sm" onClick={this.onDelete}>Delete</Button>{' '}
                 </Card.Body>
             </Card>
         );

@@ -1,10 +1,10 @@
 package com.gunya.sugbox.task;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gunya.sugbox.manager.Manager;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor

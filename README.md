@@ -4,8 +4,8 @@ ____________
 
 TODO List:
 1. Clear form after save - Done
-2. Reactive update with Web Socket
-3. Authorization model
+2. Reactive update with Web Socket - Done
+3. Authorization model - Done
 4. Add archive for tasks that where done
 5. Styling cards
 6. Order 

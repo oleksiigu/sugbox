@@ -6,7 +6,12 @@
     <link rel="stylesheet" href="static/css/main.04980fea.css" />
 </head>
 <body>
-
+<div>
+    Hello, <span id="managername" th:text="${#authentication.name}">user</span>.
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Log Out"/>
+    </form>
+</div>
 <div id="root"></div>
 
 <script src="static/js/main.0eb7e31b.js"></script>

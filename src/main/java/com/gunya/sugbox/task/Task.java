@@ -1,6 +1,7 @@
 package com.gunya.sugbox.task;
 
 import lombok.*;
+import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

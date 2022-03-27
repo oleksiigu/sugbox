@@ -1,53 +1,49 @@
-import React from "react";
-import { ReactDOM } from "react";
+import React, { useState } from "react";
 import {Form, Button} from "react-bootstrap";
+import { fetchTasks, addNewTask } from "./tasks/tasksSlice"
+import { useDispatch } from "react-redux";
 
-export default class CreateDialog extends React.Component {
+export const CreateDialog = () => {
+    const dispatch = useDispatch();
 
-    constructor(props) {
-        super(props);
-        this.state = {name:"", description: ""};
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.onNameChange = this.onNameChange.bind(this);
-        this.onDescriptionChange = this.onDescriptionChange.bind(this);
+    const onNameChanged = e => setName(e.target.value);
+    const onDescriptionChanged = e => setDescription(e.target.value);
+
+    const onSaveTaskClicked = () => {
+        if(name && description) {
+            dispatch(
+                addNewTask({
+                    name,
+                    description,
+                    state: "TODO"
+                })
+            );
+
+            setName('');
+            setDescription('');
+        }
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        this.props.saveTask(this.state.name, this.state.description);
-        this.setState({name:"", description: ""});
-        window.location = "#";
-    }
+    return (
+        <Form>
+            <Form.Group className="mb-3" controlId="formName">
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" placeholder="Task name" value={name} onChange={onNameChanged}/>
+            </Form.Group>
 
-    onNameChange(e) {
-        var val = e.target.value;
-        this.setState({name: val});
-    }
+            <Form.Group className="mb-3" controlId="formName">
+                <Form.Label>Description</Form.Label>
+                <Form.Control as="textarea" rows={3} placeholder="Task description" value={description} onChange={onDescriptionChanged}/>
+            </Form.Group>
 
-    onDescriptionChange(e) {
-        var val = e.target.value;
-        this.setState({description: val});
-    }
-
-    render() {
-        return (
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Group className="mb-3" controlId="formName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Task name" value={this.state.name} onChange={this.onNameChange}/>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formName">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" rows={3} placeholder="Task description" value={this.state.description} onChange={this.onDescriptionChange}/>
-                </Form.Group>
-
-                <Button variant="outline-success" size="sm" type="submit">
-                    Save
-                </Button>
-            </Form>
-        );
-    }
-
+            <Button variant="outline-success" size="sm" onClick={onSaveTaskClicked}>
+                Save
+            </Button>
+        </Form>
+    );
 }
+
+export default CreateDialog;

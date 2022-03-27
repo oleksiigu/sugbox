@@ -1,41 +1,33 @@
 import React from "react";
+import { updateTaskState, removeTask } from "./tasks/tasksSlice";
 import { Card, Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 
-export default class Task extends React.Component {
+export const Task = (props) => {
 
-    constructor(props){
-        super(props);
-        this.onDelete = this.onDelete.bind(this);
-        this.onUpdate = this.onUpdate.bind(this);
+    const dispatch = useDispatch();
+    const {id, name, description} = props.task;
+
+    function onUpdate() {
+        dispatch(updateTaskState(props.task));
     }
 
-    onDelete(e){
-        this.props.onDelete(this.props.task);
+    function onDelete(){
+        dispatch(removeTask(props.task));
     }
 
-    onUpdate(e){
-        this.props.onUpdate(this.props.task);
-    }
-
-    render() {
-        let buttonText = "In progress";
-        if (this.props.task.state === "IN_PROGRESS") {
-            buttonText = "Done";
-        } else if (this.props.task.state === "DONE") {
-            buttonText = "Archived";
-        }
-
-        return (
-            <Card className="bg-dark text-white taskCard">
-                <Card.Body>
-                    <Card.Title>{this.props.task.name}</Card.Title>
-                    <Card.Text>
-                        {this.props.task.description}
-                    </Card.Text>
-                    <Button variant="info" size="sm" onClick={this.onUpdate}>{buttonText}</Button>{' '}
-                    <Button variant="danger" size="sm" onClick={this.onDelete}>Delete</Button>{' '}
-                </Card.Body>
-            </Card>
-        );
-    }
+    return (
+        <Card className="bg-dark text-white taskCard">
+            <Card.Body>
+                <Card.Title>{name}</Card.Title>
+                <Card.Text>
+                    {description}
+                </Card.Text>
+                <Button variant="info" size="sm" onClick={onUpdate}>Move</Button>{' '}
+                <Button variant="danger" size="sm" onClick={onDelete}>Delete</Button>{' '}
+            </Card.Body>
+        </Card>
+    );
 }
+
+export default Task;

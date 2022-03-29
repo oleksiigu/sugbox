@@ -1,24 +1,22 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {Container, Row, Col} from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Task from "./Task";
-import StompClient from "./websocket-listener"
-import { selectAllTasks, fetchTasks } from "./tasks/tasksSlice";
+import { fetchTasks } from "../store/tasks/actions"
+import StompClient from "../websocket-listener"
 
 export const TasksList = () => {
-    const tasks = useSelector(selectAllTasks);
-    const tasksStatus = useSelector(state => state.tasks.status);
-    const error = useSelector(state => state.tasks.error)
+    const tasks = useSelector((state) => state.TaskReducer.tasks);
+    const tasksStatus = useSelector(state => state.TaskReducer.status);
 
     const dispatch = useDispatch();
 
-    
 
     useEffect(() => {
-
+        console.log('tasks status - ' + tasksStatus);
         if (tasksStatus === 'idle') {
-          dispatch(fetchTasks());
+            dispatch(fetchTasks());
         }
 
         StompClient.register([
@@ -30,8 +28,13 @@ export const TasksList = () => {
       }, [tasksStatus, dispatch]);
 
     return (
+        
         <Container className="p-3">
-            <Row>
+            {tasksStatus !== 'succeeded'? (
+                <span>Loading...</span>
+            ):(
+             <Fragment>
+                 <Row>
                 <Col><h5>TODO</h5></Col>
                 <Col><h5>In progress</h5></Col>
                 <Col><h5>Done</h5></Col>
@@ -65,6 +68,8 @@ export const TasksList = () => {
                     })}
                 </Col>
             </Row>
+             </Fragment>   
+            )}
         </Container>
     );
 }

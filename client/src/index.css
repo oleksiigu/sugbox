@@ -1,14 +1,14 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -23,7 +23,7 @@ code {
 }
 
 .todo.card {
-  background-color:grey;
+  background-color: grey;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
@@ -31,15 +31,15 @@ code {
 }
 
 .inprogress.card {
-  background-color:seagreen;
+  background-color: seagreen;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
-  height: 90%;  
+  height: 90%;
 }
 
 .done.card {
-  background-color:steelblue;
+  background-color: steelblue;
   margin-left: auto;
   margin-right: auto;
   width: 90%;

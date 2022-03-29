@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import {Form, Button} from "react-bootstrap";
-import { fetchTasks, addNewTask } from "./tasks/tasksSlice"
 import { useDispatch } from "react-redux";
+import { createTask } from "../store/tasks/actions";
+
 
 export const CreateDialog = () => {
     const dispatch = useDispatch();
@@ -13,18 +14,16 @@ export const CreateDialog = () => {
     const onDescriptionChanged = e => setDescription(e.target.value);
 
     const onSaveTaskClicked = () => {
-        if(name && description) {
-            dispatch(
-                addNewTask({
-                    name,
-                    description,
-                    state: "TODO"
-                })
-            );
+        if (name && description) {
+            dispatch(createTask({
+                name,
+                description,
+                state: "TODO"
+            }))
+        }
 
             setName('');
             setDescription('');
-        }
     }
 
     return (
